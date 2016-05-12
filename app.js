@@ -1,6 +1,23 @@
 var request = require('request');
 var cheerio = require('cheerio');
+var express = require('express');
+var engines = require('consolidate');
+
+var app = express();
 var store = [], names = [];
+
+var server = app.listen(process.env.PORT || '8080', '0.0.0.0', function() {
+  console.log('App listening at http://%s:%s', server.address().address,
+    server.address().port);
+  console.log('Press Ctrl+C to quit.');
+});
+
+app.set('view engine', 'ejs');
+
+app.get('/', function(req, res, next) {
+  res.render('index', { header: 'Refresh to grab another random code name' });
+  //getPage(pushNames);
+})
 
 function getPage(callback) {
   request('https://en.wikipedia.org/wiki/List_of_Intel_codenames', function (error, response, body) {
@@ -26,8 +43,5 @@ function pushNames(page) {
 }
 
 function getCodeName() {
-  codeName = names[Math.floor(Math.random() * names.length)];
-  console.log(codeName);
+  document.getElementByTagName('h2').text(names[Math.floor(Math.random() * names.length)]);
 }
-
-getPage(pushNames);
