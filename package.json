@@ -1,0 +1,15 @@
+{
+  "name": "codenames",
+  "version": "1.0.0",
+  "description": "Scrape code names from Intel Wikipedia page",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Adam Parker",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^0.20.0",
+    "request": "^2.72.0"
+  }
+}
